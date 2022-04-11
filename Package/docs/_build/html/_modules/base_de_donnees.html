@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>base_de_donnees &mdash; Documentation Package 1.0.0</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">INTRO:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CONTENU:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Code du module</a> &raquo;</li>
+      <li>base_de_donnees</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de base_de_donnees</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ceci est un module qui a une classe Database pour la création et la manipulation de bases de données</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+
+<div class="viewcode-block" id="Database"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database">[docs]</a><span class="k">class</span> <span class="nc">Database</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe Database établit la connexion avec la base de données et permet sa manipulation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Database.__init__"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode est appelé lors de la création d&#39;une instance de la classe Database.</span>
+<span class="sd">        Elle permet de créer la base de données.</span>
+
+<span class="sd">        :return: Un objet de classe Database</span>
+<span class="sd">        :rtype: Database</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connexion effectué avec succès&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sql error: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="Database.create_table_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.create_table_db">[docs]</a>    <span class="k">def</span> <span class="nf">create_table_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode permet de créer une table ``dicgit``</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            Les champs de la table sont nom, prenom, id_ept, telephone et niveau.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: NoneType</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.create_table_db()</span>
+<span class="sd">        La table a été créée!</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;CREATE TABLE dicgit &quot;</span>
+                <span class="s2">&quot;(nom text, &quot;</span>
+                <span class="s2">&quot;prenom text, &quot;</span>
+                <span class="s2">&quot;id_ept integer PRIMARY KEY, &quot;</span>
+                <span class="s2">&quot;niveau text, &quot;</span>
+                <span class="s2">&quot;telephone text)&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La table a été créée!&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La création de la table a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Database.save_student_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.save_student_db">[docs]</a>    <span class="k">def</span> <span class="nf">save_student_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">niveau</span><span class="p">,</span> <span class="n">telephone</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode  permet d&#39;enregister un élève au niveau de la table ``dicgit``.</span>
+
+<span class="sd">        :param nom: Le nom de l&#39;élève</span>
+<span class="sd">        :type nom: str</span>
+<span class="sd">        :param prenom: Le prénom de l&#39;élève</span>
+<span class="sd">        :type prenom: str</span>
+<span class="sd">        :param niveau: La classe de l&#39;élève</span>
+<span class="sd">        :type niveau: str</span>
+<span class="sd">        :param telephone: Le numéro de téléphone de l&#39;élève</span>
+<span class="sd">        :type telephone: str</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: NoneType</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">           Nom, prenom, niveau et telephone doivent être appelés comme des arguments nommés.</span>
+<span class="sd">           L&#39;id_ept n&#39;est pas à renseigner car il est automatiquement incrémenté.</span>
+
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.create_table_db()</span>
+<span class="sd">        La table a été créée!</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Sene&quot;,prenom=&quot;Mohamed&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">requete</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO dicgit (nom, prenom, niveau, telephone) VALUES (?, ?, ?, ?);&quot;</span>
+            <span class="n">tuple_donnee</span> <span class="o">=</span> <span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span><span class="p">,</span> <span class="n">niveau</span><span class="p">,</span> <span class="n">telephone</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">requete</span><span class="p">,</span> <span class="n">tuple_donnee</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Les données ont été insérées avec succès&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L&#39;insertion a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Database.delete_student_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.delete_student_db">[docs]</a>    <span class="k">def</span> <span class="nf">delete_student_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_ept</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode permet d&#39;efface de la table ``dicgit`` l&#39;élève dont l&#39;idenfiant est saisi.</span>
+
+<span class="sd">        :param id_ept: L&#39;identifiant de l&#39;élève</span>
+<span class="sd">        :type id_ept: int</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: NoneType</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.create_table_db()</span>
+<span class="sd">        La table a été créée!</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Sene&quot;,prenom=&quot;Mohamed&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.delete_student_db(1)</span>
+<span class="sd">        Suppression effectué avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM dicgit WHERE id_ept = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">id_ept</span><span class="p">,))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Suppression effectué avec succès&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La suppression a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Database.modify_student_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.modify_student_db">[docs]</a>    <span class="k">def</span> <span class="nf">modify_student_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_ept</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">nom</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">prenom</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">niveau</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">telephone</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode permet de modifier les champs donnés pour l&#39;élève d&#39;identifiant est saisi.</span>
+
+<span class="sd">        :param id_ept: L&#39;identifiant de l&#39;élève à modifier</span>
+<span class="sd">        :type id_ept: int</span>
+<span class="sd">        :param nom: La nouvelle valeur que l&#39;on veut donner au champ nom</span>
+<span class="sd">        :type nom: str</span>
+<span class="sd">        :param prenom: La nouvelle valeur que l&#39;on veut donner au champ prenom</span>
+<span class="sd">        :type prenom: str</span>
+<span class="sd">        :param niveau: La nouvelle valeur que l&#39;on veut donner au champ niveau</span>
+<span class="sd">        :type niveau: str</span>
+<span class="sd">        :param telephone: La nouvelle valeur que l&#39;on veut donner au champ telephone</span>
+<span class="sd">        :type telephone: str</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: NoneType</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            Nom, prenom, niveau et telephone doivent être appelés comme des arguments nommés.</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Sene&quot;,prenom=&quot;Mohamed&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.modify_student_db(1, prenom = &quot;Mohamed Massamba&quot;)</span>
+<span class="sd">        L&#39;enregistrement a été modifié avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.get_student_db(1, (&quot;prenom&quot;, &quot;nom&quot;))</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        {&#39;prenom&#39;: &#39;Mohamed Massamba&#39;, &#39;nom&#39;: &#39;Sene&#39;}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">nom</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="s2">&quot;UPDATE dicgit SET nom = ? WHERE id_ept = ?&quot;</span><span class="p">,</span>
+                    <span class="p">(</span>
+                        <span class="n">nom</span><span class="p">,</span>
+                        <span class="n">id_ept</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">prenom</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="s2">&quot;UPDATE dicgit SET prenom = ? WHERE id_ept = ?&quot;</span><span class="p">,</span>
+                    <span class="p">(</span>
+                        <span class="n">prenom</span><span class="p">,</span>
+                        <span class="n">id_ept</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">niveau</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="s2">&quot;UPDATE dicgit SET niveau = ? WHERE id_ept = ?&quot;</span><span class="p">,</span>
+                    <span class="p">(</span>
+                        <span class="n">niveau</span><span class="p">,</span>
+                        <span class="n">id_ept</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">telephone</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="s2">&quot;UPDATE dicgit SET telephone = ? WHERE id_ept = ?&quot;</span><span class="p">,</span>
+                    <span class="p">(</span>
+                        <span class="n">telephone</span><span class="p">,</span>
+                        <span class="n">id_ept</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L&#39;enregistrement a été modifié avec succès&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La modification a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Database.get_student_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.get_student_db">[docs]</a>    <span class="k">def</span> <span class="nf">get_student_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_ept</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Permet de récupérer les informations souhaitées d&#39;un élève sous forme de dictionnaire.</span>
+
+<span class="sd">        :param id_ept: L&#39;identifiant de l&#39;élève à modifier</span>
+<span class="sd">        :type id_ept: int</span>
+<span class="sd">        :param args: Les différents champs souhaités</span>
+<span class="sd">        :type args: tuple</span>
+<span class="sd">        :return: Un dictionnaire contenant les informations souhaités</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        .. Note::</span>
+<span class="sd">            Les champs souhaités doivent être renseignés sous forme de chaine de caractère</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Sene&quot;,prenom=&quot;Mohamed&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.get_student_db(1, (&quot;nom&quot;, &quot;prenom&quot;, &quot;niveau&quot;))</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        {&#39;nom&#39;:&#39;Sene&#39;,&#39;prenom&#39;:&#39;Mohamed&#39;,&#39;niveau&#39;:&#39;DIC1-GIT&#39;}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dico</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT  </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> FROM dicgit WHERE id_ept = </span><span class="si">{</span><span class="n">id_ept</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">dico</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">dico</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La lecture des données a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Database.get_all_db"><a class="viewcode-back" href="../base_de_donnees.html#base_de_donnees.Database.get_all_db">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cette méthode permet de récupérer les informations de tous les élèves de la table ``dicgit``</span>
+
+<span class="sd">        :return: Un dictionnaire contenant tous les enregistrements de la base</span>
+<span class="sd">        :rtype: dict</span>
+
+<span class="sd">        :Exemple:</span>
+
+<span class="sd">        &gt;&gt;&gt; db = Database()</span>
+<span class="sd">        Connexion effectué avec succès</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Sene&quot;,prenom=&quot;Mohamed&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.save_student_db(nom=&quot;Ndiaye&quot;,prenom=&quot;Fatou&quot;,niveau=&quot;DIC1-GIT&quot;,telephone=&quot;77777777&quot;)</span>
+<span class="sd">        Les données ont été insérées avec succès</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        &gt;&gt;&gt; db.get_all_db()</span>
+<span class="sd">        Le nombre total de ligne est  2</span>
+<span class="sd">        La connexion a été fermée</span>
+<span class="sd">        {1:{&#39;id_ept&#39;:1,&#39;nom&#39;:&#39;Sene&#39;,&#39;prenom&#39;:&#39;Mohamed&#39;,&#39;niveau&#39;:&#39;DIC1-GIT&#39;,&#39;telephone&#39;:&#39;77777777&#39;},</span>
+<span class="sd">        2:{&#39;id_ept&#39;:2,&#39;nom&#39;:&#39;Ndiaye&#39;,&#39;prenom&#39;:&#39;Fatou&#39;,&#39;niveau&#39;:&#39;DIC1-GIT&#39;,&#39;telephone&#39;:&#39;77777777&#39;}}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dico</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dicgit_database.db&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">requete</span> <span class="o">=</span> <span class="s2">&quot;SELECT * from dicgit&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">requete</span><span class="p">)</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Le nombre total de ligne est &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="n">dico</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;id_ept&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;prenom&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;niveau&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                    <span class="s2">&quot;telephone&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                <span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">dico</span>
+        <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La lecture des données a échoué&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La connexion a été fermée&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fatou Kine Ndiaye, Mohamed Massamba Sene.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

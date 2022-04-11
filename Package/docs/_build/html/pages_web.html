@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pages web &mdash; Documentation Package 1.0.0</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Base de donnees" href="base_de_donnees.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">INTRO:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CONTENU:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vecteur.html">Vecteur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorateurs.html">Decorateurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base_de_donnees.html">Base de donnees</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pages web</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Package</a> &raquo;</li>
+      <li>Pages web</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pages_web.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="module-pages_web">
+<span id="pages-web"></span><h1>Pages web<a class="headerlink" href="#module-pages_web" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Ceci est un module contenant des fonctions pour le <code class="docutils literal notranslate"><span class="pre">web</span> <span class="pre">scraping</span></code> avec Python</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il faut avoir une connexion internet pour pouvoir utiliser ce module</p>
+</div>
+<dl class="py function">
+<dt id="pages_web.get_emails">
+<code class="sig-prename descclassname">pages_web.</code><code class="sig-name descname">get_emails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages_web.html#get_emails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pages_web.get_emails" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction permet de récupérer toutes les adresses emails contenues dans une page web.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – L’url de la page web que l’on cherche à accéder</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une liste des emails contenues dans la page web</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Exemple</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">get_emails</span><span class="p">(</span><span class="s2">&quot;https://ept.sn/contactez-nous/&quot;</span><span class="p">))</span>
+<span class="go">[&#39;select2@4.1.0-beta.1&#39;, &#39;ept@ept.sn&#39;, &#39;dir.etudes@ept.sn&#39;, &#39;ept@ept.sn&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pages_web.get_page">
+<code class="sig-prename descclassname">pages_web.</code><code class="sig-name descname">get_page</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages_web.html#get_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pages_web.get_page" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction permet d” afficher le code HTML d’une page web.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – L’url de la page web que l’on cherche à accéder</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le code html de la page</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Exemple</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">code</span> <span class="o">=</span> <span class="n">get_page</span><span class="p">(</span><span class="s2">&quot;https://ept.sn/contactez-nous/&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">code</span><span class="p">[:</span><span class="mi">150</span><span class="p">])</span>
+<span class="go">&lt;!DOCTYPE html&gt;</span>
+<span class="go">&lt;html lang=&quot;fr-FR&quot;&gt;</span>
+<span class="go">&lt;head&gt;</span>
+<span class="go">&lt;meta charset=&quot;utf-8&quot;/&gt;</span>
+<span class="go">&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;</span>
+<span class="go">&lt;link</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pages_web.get_tables">
+<code class="sig-prename descclassname">pages_web.</code><code class="sig-name descname">get_tables</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages_web.html#get_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pages_web.get_tables" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction permet de récupérer le code HTML des tables contenues dans une page web.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – L’url de la page web que l’on cherche à accéder</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une liste des codes HTML des tables dans la page web</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Exemple</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page_tables</span> <span class="o">=</span> <span class="n">get_tables</span><span class="p">(</span><span class="s2">&quot;https://ept.sn/contactez-nous/&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">page_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">150</span><span class="p">])</span>
+<span class="go">&lt;table class=&quot;standing-table__table callfn&quot; data-fn=&quot;table-sorter-lite&quot; data-lite=&quot;true&quot;&gt;</span>
+<span class="go">&lt;caption class=&quot;standing-table__caption&quot;&gt;</span>
+<span class="go">Premier League</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pages_web.get_urls">
+<code class="sig-prename descclassname">pages_web.</code><code class="sig-name descname">get_urls</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pages_web.html#get_urls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pages_web.get_urls" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette fonction permet de récupérer toutes les URls contenues dans une page web.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – L’url de la page web que l’on cherche à accéder</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Une liste des URLs contenues dans la page web</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Exemple</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page_urls</span> <span class="o">=</span> <span class="n">get_urls</span><span class="p">(</span><span class="s2">&quot;https://ept.sn/contactez-nous/&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">page_urls</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="go">[&#39;https://web.facebook.com/EPT-lofficiel-401641523533850?_rdc=1&amp;_rdr&#39;,</span>
+<span class="go">&#39;https://twitter.com/ept_officiel?lang=fr&#39;,</span>
+<span class="go">&#39;https://www.youtube.com/channel/UCH9KR3HcWPsJSxViD2LUujg/videos&#39;,</span>
+<span class="go">&#39;https://ept.sn/&#39;, &#39;https://ept.sn/mot-du-directeur&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="base_de_donnees.html" class="btn btn-neutral float-left" title="Base de donnees" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fatou Kine Ndiaye, Mohamed Massamba Sene.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

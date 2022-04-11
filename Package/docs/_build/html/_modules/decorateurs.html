@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>decorateurs &mdash; Documentation Package 1.0.0</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">INTRO:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CONTENU:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Code du module</a> &raquo;</li>
+      <li>decorateurs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de decorateurs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Ceci est un module contenant un décorateur transform qui permet de modifier le comportement</span>
+<span class="sd">d&#39;une fonction.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<div class="viewcode-block" id="transform"><a class="viewcode-back" href="../decorateurs.html#decorateurs.transform">[docs]</a><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Ceci est un décorateur.</span>
+
+<span class="sd">    :param kwargs: Un argument nommé pour spécifier le comportement voulu</span>
+<span class="sd">    :type kwargs: dict</span>
+<span class="sd">    :return: Elle renvoie le résultat de la fonction avec la modification apportée</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    :Exemple:</span>
+
+<span class="sd">    &gt;&gt;&gt; @transform(upper = True)</span>
+<span class="sd">    ... def func(s, s1):</span>
+<span class="sd">    ...     return s + s1</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; func(&quot;Ceci est &quot;, &quot;un exemple&quot;)</span>
+<span class="sd">    &#39;CECI EST UN EXEMPLE&#39;</span>
+<span class="sd">    &gt;&gt;&gt; @transform(lower = True)</span>
+<span class="sd">    ... def func(s):</span>
+<span class="sd">    ...     return s</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; func(&quot;Ceci est un exemple&quot;)</span>
+<span class="sd">    &#39;ceci est un exemple&#39;</span>
+<span class="sd">    &gt;&gt;&gt; @transform(piglatin = True)</span>
+<span class="sd">    ... def func(s1, s2, s3 = &quot;exemple&quot;):</span>
+<span class="sd">    ...     return s1 + s2 + s3</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; func(&quot;This is &quot;, &quot;an &quot;, s3 = &quot;example&quot;)</span>
+<span class="sd">    &#39;Isthay isway anway exampleway&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">fonction</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;upper&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">fonction</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">fonction</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;piglatin&quot;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">english2piglatin</span><span class="p">(</span><span class="n">fonction</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">function</span></div>
+
+
+<div class="viewcode-block" id="english_word2piglatin"><a class="viewcode-back" href="../decorateurs.html#decorateurs.english_word2piglatin">[docs]</a><span class="k">def</span> <span class="nf">english_word2piglatin</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonction permet de traduire un mot en Pig Latin.</span>
+
+<span class="sd">    :param word: Le mot que l&#39;on souhaite traduire</span>
+<span class="sd">    :type word: str</span>
+<span class="sd">    :return: La traduction en Pig Latin du mot</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="s2">&quot;^[aeiouAEIOU][a-zA-Z0-9_]*&quot;</span>
+    <span class="n">match_reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">match_reg</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mot_ret1</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="o">+</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">+</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="o">+</span> <span class="s2">&quot;ay&quot;</span>
+            <span class="p">)</span>
+            <span class="n">mot_ret2</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="o">+</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">+</span> <span class="n">word</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[aeiouAEIOU]&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="o">+</span> <span class="s2">&quot;ay&quot;</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;ay&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">mot_ret1</span>
+            <span class="k">return</span> <span class="n">mot_ret2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">word</span> <span class="o">+</span> <span class="s2">&quot;way&quot;</span></div>
+
+
+<div class="viewcode-block" id="english2piglatin"><a class="viewcode-back" href="../decorateurs.html#decorateurs.english2piglatin">[docs]</a><span class="k">def</span> <span class="nf">english2piglatin</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonction permet de traduire une phrase en Pig Latin.</span>
+
+<span class="sd">    :param sentence: La phrase ou le groupe de mot que l&#39;on souhaite traduire</span>
+<span class="sd">    :type sentence: str</span>
+<span class="sd">    :return: La traduction en piglatin de la phrase ou du groupe de mot</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">english_word2piglatin</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Fatou Kine Ndiaye, Mohamed Massamba Sene.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
